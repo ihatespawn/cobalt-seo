@@ -19,9 +19,9 @@ def block_crawlers():
     user_agent = request.headers.get('User-Agent', '').lower()
     if any(crawler in user_agent for crawler in CRAWLERS):
         if request.path.split('/')[1] == "alternative-to":
-            return render_template("alt.html", thing=request.path.split('/')[2])
+            return render_template("alt.html", thing=request.path.split('/')[2], domain=request.headers['Host'])
         else:
-            return render_template("seo.html")
+            return render_template("seo.html", domain=request.headers['Host'])
 
 @app.route('/')
 def home():
