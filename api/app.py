@@ -1,4 +1,5 @@
 from flask import Flask, request, Response, render_template, redirect
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -16,12 +17,27 @@ ALTERNATIVES = [
 
 @app.before_request
 def block_crawlers():
+    year = datetime.now().year
+    if year == 2024:
+        copyright = "2024"
+    elif year > 2024:
+        copyright = "2024-" + year
+    # idk how that would even be possible
+    elif year < 2024:
+        copyright = year + "-2024"
+
     user_agent = request.headers.get('User-Agent', '').lower()
     if any(crawler in user_agent for crawler in CRAWLERS):
         if request.path.split('/')[1] == "alternative-to":
-            return render_template("alt.html", thing=request.path.split('/')[2], domain=request.headers['Host'])
+            return render_template("alt.html", \
+                thing=request.path.split('/')[2], domain=request.headers['Host'], \
+                copyright=copyright
+            )
         else:
-            return render_template("seo.html", domain=request.headers['Host'])
+            return render_template("alt.html", \
+                domain=request.headers['Host'], \
+                copyright=copyright
+            )
 
 @app.route('/')
 def home():
