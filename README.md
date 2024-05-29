@@ -6,3 +6,4 @@ time spent making (after release on github): [![wakatime](https://wakatime.com/b
 ## how does it work
 if you're not a crawler in [this list](https://github.com/ihatespawn/cobalt-seo), it will redirect you to [cobalt](https://cobalt.tools).
 if you're a crawler, it will show you a text that is meant to boost this website on searches.
+![Screenshot from 2024-05-29 16-05-44](https://github.com/ihatespawn/cobalt-seo/assets/168680471/fec6288d-11cb-4448-af8a-6c45b42359c0)
