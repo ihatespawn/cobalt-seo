@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-**what do you want me to add*
+**what do you want me to add**
 
 **are you planning on making a pull request**
 
-**will this benefit this website?
+**will this benefit this website?**
