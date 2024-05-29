@@ -1,3 +1,4 @@
+[![deploy with vercel](https://vercel.com/button)](https://vercel.com/new/ihatespawns-projects/clone?s=https%3A%2F%2Fgithub.com%2Fihatespawn%2Fcobalt-seo&showOptionalTeamCreation=false)
 # cobalt-seo
 a website to bring more attention to cobalt.tools
 
