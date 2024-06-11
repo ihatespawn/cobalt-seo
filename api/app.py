@@ -15,6 +15,10 @@ ALTERNATIVES = [
     "2conv", "YTMP3", "Y2Meta", "TubeMate", "ClipConverter", "ClipGrab", "youtube-dl"
 ]
 
+FORMATS = [
+    "MP3", "MP4", "WEBM", "OGG", "WAV", "OPUS"
+]
+
 @app.before_request
 def block_crawlers():
     year = datetime.now().year
@@ -33,6 +37,11 @@ def block_crawlers():
                 thing=request.path.split('/')[2], domain=request.headers['Host'], \
                 copyright=copyright
             )
+        elif request.path.split('/')[1] == "youtube-downloader-to":
+            return render_template("youtubetox.html", \
+                format=request.path.split('/')[2], domain=request.headers['Host'], \
+                copyright=copyright
+            )
         else:
             return render_template("alt.html", \
                 domain=request.headers['Host'], \
@@ -43,6 +52,9 @@ def block_crawlers():
 def home():
     return redirect("https://cobalt.tools", 301) #render_template("seo.html")
 
+def youtubeto(format):
+    return redirect("https://cobalt.tools", 301) #render_template("youtubetox.html", format=format)
+
 def alternative(thing):
     return redirect("https://cobalt.tools", 301) #render_template("alt.html", thing=thing)
 
@@ -51,6 +63,10 @@ with app.app_context():
         alter = alt.lower().replace(' ', '-')
         path = '/alternative-to/' + alter
         app.add_url_rule(path, alter + '-alternative', view_func=lambda alt=alt: alternative(alt))
+    for format in FORMATS:
+        alter = format.lower()
+        path = '/youtube-downloader-to/' + alter
+        app.add_url_rule(path, alter + '-youtube-downloader', view_func=lambda format=format: youtubeto(format))
 
 if __name__ == '__main__':
     app.run(debug=True)
